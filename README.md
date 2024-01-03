@@ -1,73 +1,40 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+Packages and DB used (with reason)
+Nest.js:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Modular Structure: Nest.js encourages a modular and organized structure for your application, making it easy to manage and scale.
+Dependency Injection: Nest.js leverages the power of TypeScript and provides a robust dependency injection system, facilitating modular and testable code.
+Middleware Support: Nest.js has excellent support for middleware, allowing you to execute logic before or after a request is handled by the route handler.
+MongoDB:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Flexible Schema: MongoDB is a NoSQL database that allows for flexible and dynamic schema design. This is particularly useful in scenarios where the data structure can evolve over time.
+Scalability: MongoDB is designed to scale horizontally, making it well-suited for applications that need to handle a large volume of data and scale horizontally across multiple servers or clusters.
+Document-Oriented: MongoDB stores data in a JSON-like BSON format called documents. This makes it easy to work with data in a format that closely resembles how data is represented in most programming languages.
+Passport Strategy:
 
-## Description
+Extensibility: Passport provides a modular and extensible authentication system. It supports a wide range of authentication mechanisms, known as strategies, which can be easily plugged into the application.
+Middleware Integration: Passport integrates seamlessly with middleware in the Express.js framework, allowing you to incorporate authentication logic into your routes with minimal effort.
+Community Support: Passport is a widely used library with a large and active community. This means that there is extensive documentation, and you can find a strategy for almost every authentication provider.
+passport-jwt:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+JSON Web Token (JWT) Support: passport-jwt is a Passport strategy for authenticating with JSON Web Tokens. JWT is a widely adopted standard for token-based authentication.
+Stateless Authentication: JWTs enable stateless authentication, meaning the server doesn't need to store session information. This is particularly advantageous in a microservices architecture.
+Token Expiry: JWTs can include an expiration time, enhancing security by automatically invalidating tokens after a certain period.
+Throttler:
 
-## Installation
+Rate Limiting: Throttler modules in Nest.js, such as nestjs-rate-limiter, allow you to implement rate limiting for your API endpoints, protecting your server from abuse and ensuring fair usage.
+Customizable Policies: Throttlers often provide flexible policies, allowing you to define rules for different routes or user roles. This customization helps tailor rate limiting to the specific needs of your application.
+Prevent Brute Force Attacks: Throttling can be used to prevent brute force attacks by limiting the number of login attempts within a certain time frame.
 
-```bash
-$ npm install
-```
 
-## Running the app
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+keep in mind all the APIs is authenticated and throlled
 
-# production mode
-$ npm run start:prod
-```
+setup locally to run APIs:
+1. clone the repo and setup mongoDB
+2. use node>=16 and install packages using npm i
+3. If still some packages unable to install, intall it manually from packages and imports
+4. now you are ready to run using npm run start:dev
 
-## Test
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Thanks 
