@@ -51,9 +51,9 @@ export class NotesService {
 
   
 
-  async shareWithUser(id: any, headers: any):  Promise<any>{
+  async shareWithUser(id: any, userId: any):  Promise<any>{
     const data = await this.notesModel.findById(id).exec();
-    const userIdForSharing = this.getUserIdFromToken(headers['authorization'].split(' ')[1])
+    const userIdForSharing = userId;
     data.sharedWith.push(userIdForSharing);
     const updatedData = await this.notesModel.findByIdAndUpdate(id, data, { new: true }).exec();
     return updatedData;

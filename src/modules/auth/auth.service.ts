@@ -24,7 +24,7 @@ export class AuthService {
       return data;
     }
     else{
-     return new HttpException('User not found',400);
+     throw new HttpException('User not found',400);
     }
   }
 }
