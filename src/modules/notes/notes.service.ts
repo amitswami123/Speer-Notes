@@ -15,8 +15,20 @@ export class NotesService {
   
   ) {}
 
-  async create(body: any): Promise<any> {
-    const createdNotes = new this.notesModel(body);
+  getUserIdFromToken(token: string) : Types.ObjectId{
+    try {
+      console.log(token,"token")
+      const decoded: any = jwt.verify(token, 'jsflj8843bf843djfjfdjh34893489'); 
+      console.log(decoded,"decoded")
+      return decoded.sub;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async create(body: any, headers): Promise<any> {
+    body.createdBy = this.getUserIdFromToken(headers['authorization'].split(' ')[1])
+    const createdNotes = new this.notesModel(body);  
     return createdNotes.save();
   }
 
@@ -37,16 +49,7 @@ export class NotesService {
   }
 
 
-   getUserIdFromToken(token: string) : Types.ObjectId{
-    try {
-      console.log(token,"token")
-      const decoded: any = jwt.verify(token, 'jsflj8843bf843djfjfdjh34893489'); 
-      console.log(decoded,"decoded")
-      return decoded.sub;
-    } catch (error) {
-      return null;
-    }
-  }
+  
 
   async shareWithUser(id: any, headers: any):  Promise<any>{
     const data = await this.notesModel.findById(id).exec();

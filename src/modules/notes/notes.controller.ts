@@ -31,8 +31,8 @@ export class NotesController {
 
   @Throttle({ default: { limit: 3, ttl: 60000 } })
   @Post()
-  async createNote(@Body() body: NotesModel): Promise<any> {
-    return this.notesService.create(body);
+  async createNote(@Body() body: NotesModel,  @Headers() header): Promise<any> {
+    return this.notesService.create(body, header);
   }
 
   @Throttle({ default: { limit: 3, ttl: 60000 } })
