@@ -1,14 +1,16 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards, Query } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import { NotesModel } from './schema/notes.schema';
+import { JwtAuthGuard } from 'src/modules/auth/jwt.auth.gaurd'; 
 
 @Controller('api/notes')
+@UseGuards(JwtAuthGuard) // Apply JwtAuthGuard to the entire controller
+
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
   @Get('search')
   async searchNotes(@Query() query: any): Promise<any> {
-    // console.log(query,"===>query");
     return this.notesService.searchNotes(query.query)
   }
 
