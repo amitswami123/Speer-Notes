@@ -42,7 +42,6 @@ export class NotesService {
   }
 
   async searchNotes(text){
-    // return this.notesModel.find({ $text: { $search: text } }).exec();
     return this.notesModel.aggregate([
       {
         $match: {
@@ -54,7 +53,6 @@ export class NotesService {
           },
         },
       },
-      // Add more stages to the aggregation pipeline if needed
     ]).exec();
 
   }
