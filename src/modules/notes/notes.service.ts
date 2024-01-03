@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Notes, NotesModel } from './schema/notes.schema';
+import * as jwt from 'jsonwebtoken';
 
 
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
 
@@ -34,8 +35,22 @@ export class NotesService {
   async delete(id: string): Promise<any> {
     return this.notesModel.findByIdAndDelete(id).exec();
   }
-  async shareWithUser(id: any, userIdForSharing: any):  Promise<any>{
+
+
+   getUserIdFromToken(token: string) : Types.ObjectId{
+    try {
+      console.log(token,"token")
+      const decoded: any = jwt.verify(token, 'jsflj8843bf843djfjfdjh34893489'); 
+      console.log(decoded,"decoded")
+      return decoded.sub;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async shareWithUser(id: any, headers: any):  Promise<any>{
     const data = await this.notesModel.findById(id).exec();
+    const userIdForSharing = this.getUserIdFromToken(headers['authorization'].split(' ')[1])
     data.sharedWith.push(userIdForSharing);
     const updatedData = await this.notesModel.findByIdAndUpdate(id, data, { new: true }).exec();
     return updatedData;

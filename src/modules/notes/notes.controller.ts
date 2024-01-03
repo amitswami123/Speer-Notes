@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards, Query } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards, Query, Req, Headers } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import { NotesModel } from './schema/notes.schema';
 import { JwtAuthGuard } from 'src/modules/auth/jwt.auth.gaurd'; 
@@ -49,8 +49,9 @@ export class NotesController {
 
   @Throttle({ default: { limit: 3, ttl: 60000 } })
   @Post(':id/share')
-  async shareNote(@Param('id') id: string, @Body() body: any): Promise<any> {
-    return await this.notesService.shareWithUser(id,'usersss');
+  async shareNote(@Param('id') id: string, @Body() body: any, @Headers() header): Promise<any> {
+    console.log(header,"===>header")
+    return await this.notesService.shareWithUser(id, header);
   }
 
   
